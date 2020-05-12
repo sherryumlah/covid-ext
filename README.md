@@ -1,5 +1,5 @@
 # Chrome Extension
-This extension pulls a random U.S. state's covid-19 stats from the API at covid19api.com each time a new browser tab is opened.
+This extension pulls and displays a random U.S. state's covid-19 stats from the API at covid19api.com each time a new browser tab is opened.
 
 ## Installation
 1. Clone the repo or download the files to your local drive. 
