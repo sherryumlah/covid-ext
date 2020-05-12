@@ -1,0 +1,22 @@
+// manifest.json
+// This is a metadata file in JSON format that contains properties that tell 
+// Chrome what the extension is going to do, and what permissions it requires.
+// Since we're asking for activeTab permissions,  when a user tries to install 
+// the extension they will be notified this permission is needed
+
+{ 
+  "manifest_version": 2, 
+  "name": "Covid-19 Stats", 
+  "description": "Random states' data for active covid-19 cases", 
+  "version": "1.0", 
+  "author": "Sherry Umlah",
+  "browser_action": {   
+    "default_icon": "images/bug-icon.png",   
+    "default_title": "Covid-19 Stats",
+    "default_popup": "popup.html" // HTML file to display when user clicks on app icon in address bar
+  },
+  "chrome_url_overrides" : {  
+    "newtab": "newtab.html" // HTML file rendered every time a new tab is opened
+  },
+  "permissions": ["activeTab"] // need to have permission to control the activeTab
+}
