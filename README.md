@@ -10,8 +10,6 @@ This extension pulls and displays a random U.S. state's covid-19 stats from the 
 5. This extension should appear in the toolbar alongside your other extensions with a green bug icon.
 6. Open a new tab and you should be presented with a random state's covid-19 data and accompanying image.
 
-[I'm an inline-style link](https://www.google.com)
-
 ## What Does this Extension Do?
 This Covid Chrome Extension utilizes the Covid-19 API from [https://api.covid19api.com](https://api.covid19api.com) to pull data 1 time per day and store that data in the user's localStorage.  Each time a new tab is opened in the Chrome browser, the extension uses the chrome_url_overrides key listed in the manifest.json file to provide a custom replacement for the document and loads the html page noted in the key's value: newtab.html
 
