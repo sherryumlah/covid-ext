@@ -1,11 +1,12 @@
 html, body {
-  margin: 0px 0px 0px 0px;
-  padding-top: 20px;
+  margin: 0px;
   font-family: Arial, sans-serif;
   font-size: 14px;
 }
 body {
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
 }
 .data {
   background-color: #fff;
@@ -17,8 +18,17 @@ body {
   color: #777;
 }
 .tiny {
-  font-size: 9px;
+  font-size: 10px;
+  padding-top: 6px;
+  border-top: 1px solid #ddd; 
 }
-.popup {
-  min-width:200px;
+.tiny a  {
+  text-decoration: none;
+  color: #777;
+}
+.tiny a:hover { text-decoration: underline; }
+
+.popup { 
+  min-width:200px; 
+  padding: 20px;
 }
