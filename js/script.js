@@ -80,10 +80,18 @@ let getCovidData = (today) => {
 /*****************************************
 // Display Random State's Data and Photo
 *****************************************/
-let displayData = (covidData) =>{
+let displayData = (covidData) => {
   covidData = JSON.parse(covidData);
   console.log("Pulling random state data...");
-  randomPick = Math.floor(Math.random() * (covidData.length + 1));
+  let random = Math.random();
+  console.log("Generating random number...");
+  console.log(covidData.length);
+  console.log(covidData[58]);
+  // Round down (random number between 0.0-.99999 * (number of array elements + 1)
+  // Example: 0.2 * (57+1) = 11.6 / rounded down = 11
+  // Example: 0 * (57+1) = 11.6 / rounded down = 0
+  // Example: 0.9999 * (57+1) = 57.9942 / rounded down = 57
+  randomPick = Math.floor(random * (covidData.length + 1));
   let stateData = covidData[randomPick];
   // console.log(stateData);
   console.log("Displaying data for: " + stateData.Province);
