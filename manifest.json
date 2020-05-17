@@ -4,12 +4,19 @@
 // Since we're asking for activeTab permissions,  when a user tries to install 
 // the extension they will be notified this permission is needed
 
+// Learn more about the manifest file at: 
+// https://developer.chrome.com/extensions/manifest
+
 { 
   "manifest_version": 2, 
   "name": "Covid-19 Stats", 
-  "description": "Random states' data for active covid-19 cases", 
+  "description": "Random state-based data for active covid-19 cases", 
   "version": "1.0", 
+  "default_locale": "en",
   "author": "Sherry Umlah",
+  "icons": { "16": "images/bug-icon-16.png",
+           "48": "images/bug-icon-48.png",
+          "128": "images/bug-icon-128.png" },
   "browser_action": {   
     "default_icon": "images/bug-icon.png",   
     "default_title": "Covid-19 Stats",

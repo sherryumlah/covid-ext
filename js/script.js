@@ -14,7 +14,6 @@ For the duration of the day, the script will pull covid data from
 the user's localStorage to randomly display a state's data with
 accompanying picture each time a new tab is opened. */
 
-
 /******************************************************
 // Get today's date, convert to ISO, and strip time
 // Example:  Sat May 16 2020 14:27:22 GMT-0500
@@ -22,7 +21,7 @@ accompanying picture each time a new tab is opened. */
 // 2020-05-16
 ******************************************************/
 let getDate = () => {
-  let today = (new Date()).toISOString().split("T")[0];
+  let today = (new Date()).toDateString();
   return today;
 }
 
@@ -30,12 +29,10 @@ let getDate = () => {
 // Getters/Setters for last retrieved date in localStorage 
 **********************************************************/
 let getLastRetrievedDate = () => {
-  console.log("Covid API data last retrieved on: " + localStorage.getItem("dateLastRetrieved"));
   return localStorage.getItem("dateLastRetrieved");
 }
 
 let setLastRetrievedDate = (today) => {
-  console.log("Setting date that data was last retrieved to: " + today);
   localStorage.setItem("dateLastRetrieved", today);
 };
 
@@ -44,7 +41,6 @@ let setLastRetrievedDate = (today) => {
 // Get Covid Data from LocalStorage
 ************************************/
 let getLocalCovidData = () => {
-  console.log("Pulling data from localStorage...")
   return localStorage.getItem("covidData");
 }
 
@@ -52,7 +48,6 @@ let getLocalCovidData = () => {
 // Get Covid Data from API
 **************************/
 let getCovidData = (today) => {
-  console.log("Getting data from API...");
   const requestOptions = {
     method: 'GET',
     redirect: 'follow'
@@ -61,7 +56,6 @@ let getCovidData = (today) => {
   fetch("https://api.covid19api.com/live/country/united-states/status/confirmed/date/2020-05-05T00:00:00Z", requestOptions)
     .then(response => response.text())
     .then(result => {
-      console.log("Saving API response to localStorage...");
       localStorage.setItem("covidData", result);
     })
     .then(() => {
@@ -71,9 +65,12 @@ let getCovidData = (today) => {
       displayData(getLocalCovidData());
     })
     .catch(error => {
-      console.log('error', error);
+      // If we fail on any of these functions, clear localStorage
       localStorage.setItem("covidData", "");
-      localStorage.setItem("lastRetrievedDate", "");
+      localStorage.setItem("dateLastRetrieved", "");
+      const body = document.getElementById("body");
+      body.style.backgroundColor = "#fff";
+      body.innerHTML = '';
     });
 };
 
@@ -82,19 +79,13 @@ let getCovidData = (today) => {
 *****************************************/
 let displayData = (covidData) => {
   covidData = JSON.parse(covidData);
-  console.log("Pulling random state data...");
   let random = Math.random();
-  console.log("Generating random number...");
-  console.log(covidData.length);
-  console.log(covidData[58]);
-  // Round down (random number between 0.0-.99999 * (number of array elements + 1)
-  // Example: 0.2 * (57+1) = 11.6 / rounded down = 11
-  // Example: 0 * (57+1) = 11.6 / rounded down = 0
+  // Round down (random number between 0.0-.99999 * (covidData.length)
+  // Example: 0.2 * (57) = 11.6 / rounded down = 11
+  // Example: 0 * (57) = 11.6 / rounded down = 0
   // Example: 0.9999 * (57+1) = 57.9942 / rounded down = 57
-  randomPick = Math.floor(random * (covidData.length + 1));
+  randomPick = Math.floor(random * covidData.length);
   let stateData = covidData[randomPick];
-  // console.log(stateData);
-  console.log("Displaying data for: " + stateData.Province);
   document.body.style.backgroundImage = "url('images/"+stateData.Province.replace(/ /g,'')+".jpg')";
   document.getElementById("stateName").innerHTML = stateData.Province;
   document.getElementById("activeCases").innerHTML = stateData.Active;
@@ -102,14 +93,12 @@ let displayData = (covidData) => {
   document.getElementById("dateReported").innerHTML = (stateData.Date).split("T")[0];
 }
   
-
 // Check to see if we already retrieved and stored API data for today
 let today = getDate();
 let lastRetrievedDate = getLastRetrievedDate();
 
 if (today !== lastRetrievedDate){
-  getCovidData(today);
+  getCovidData(today); //  retrieve from api and pass in today's date
 } else {
-  console.log("Data was already retrieved for today (" + today + ")");
-  displayData(getLocalCovidData());
+  displayData(getLocalCovidData()); // retrieve from localStorage
 }
