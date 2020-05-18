@@ -29,7 +29,7 @@ let log = (msg) => {
 ******************************************************/
 let getDate = () => {
   let today = (new Date()).toDateString();
-  log("Line 33: Today is " + today);
+  log("Line 32: Today is " + today);
   return today;
 }
 
@@ -37,12 +37,12 @@ let getDate = () => {
 Getters/Setters for last retrieved date in localStorage 
 **********************************************************/
 // let getLastRetrievedDate = () => {
-//   log("Line 41: Covid API data last retrieved on: " + localStorage.getItem("dateLastRetrieved"));
+//   log("Line 40: Covid API data last retrieved on: " + localStorage.getItem("dateLastRetrieved"));
 //   return localStorage.getItem("dateLastRetrieved");
 // }
 
 // let setLastRetrievedDate = (today) => {
-//   log("Setting date that data was last retrieved to: " + today);
+//   log("Line 45: Setting date that data was last retrieved to: " + today);
 //   localStorage.setItem("dateLastRetrieved", today);
 // };
 
@@ -50,7 +50,7 @@ Getters/Setters for last retrieved date in localStorage
 Get Covid Data from LocalStorage
 ************************************/
 // let getLocalCovidData = () => {
-//   log("Pulling data from localStorage...")
+//   log("Line 53: Pulling data from localStorage...")
 //   return localStorage.getItem("covidData");
 // }
 
@@ -58,7 +58,7 @@ Get Covid Data from LocalStorage
 Get Covid Data from API
 **************************/
 // let getCovidData = (today) => {
-//   log("Getting data from API...");
+//   log("Line 61: Getting data from API...");
 //   const requestOptions = {
 //     method: 'GET',
 //     redirect: 'follow'
@@ -68,7 +68,7 @@ Get Covid Data from API
 //     .then(response => response.text())
 //     .then(result => {
 //       localStorage.setItem("covidData", result);
-//       log("Saving API response to localStorage.");
+//       log("Line 71: Saving API response to localStorage.");
 //     })
 //     .then(() => {
 //       setLastRetrievedDate(today);
@@ -78,10 +78,10 @@ Get Covid Data from API
 //     })
 //     .catch(error => {
 //       // If we fail on any of these functions, clear localStorage
-//       log('error', error);
+//       log('Line 81: Error', error);
 //       localStorage.setItem("covidData", "");
 //       localStorage.setItem("dateLastRetrieved", "");
-//       log("Cleared localStorage");
+//       log("Line 84: Cleared localStorage");
 //       const body = document.getElementById("body");
 //       body.style.backgroundColor = "#fff";
 //       body.innerHTML = '';
@@ -102,16 +102,16 @@ add DOM elements via JavaScript
 *********************************************************************/
 // let displayData = (covidData) => {
 //   covidData = JSON.parse(covidData);
-//   log("Pulling random state data...");
+//   log("Line 105: Pulling random state data...");
 //   let random = Math.random();
-//   log("Generating random number...");
-//   log("Rounding down: " + random + " * " + covidData.length);
+//   log("Line 107: Generating random number...");
+//   log("Line 108: Rounding down: " + random + " * " + covidData.length);
 //   randomPick = Math.floor(random * covidData.length);
 //   log("= " + randomPick)
 //   log(covidData);
 //   let stateData = covidData[randomPick];
 //   log(stateData);
-//   log("Showing state data for: " + stateData.Province);
+//   log("Line 114: Showing state data for: " + stateData.Province);
 //   document.body.style.backgroundImage = "url('images/"+stateData.Province.replace(/ /g,'')+".jpg')";  
 //   document.getElementById("stateName").innerHTML = stateData.Province;
 //   document.getElementById("activeCases").innerHTML = addCommas(stateData.Active);
@@ -127,6 +127,6 @@ let today = getDate();
 // if ((today !== lastRetrievedDate) || !localCovidData || localCovidData == ""){
 //   getCovidData(today); //  retrieve from api and pass in today's date
 // } else {
-//   log("Line 123: Data was already retrieved for today (" + today + ")");
+//   log("Line 130: Data was already retrieved for today (" + today + ")");
 //   displayData(getLocalCovidData()); // retrieve from localStorage
 // }
