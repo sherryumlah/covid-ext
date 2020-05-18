@@ -22,3 +22,4 @@ The contents of popup.html are displayed in the browser when the user clicks on 
 
 ## Workshop Instructions
 Workshop instructions are available in the docs folder of this repo as both .docx and .pdf file formats.
+[https://docs.google.com/presentation/d/1EZHIY13mlcqJ4HqJYLEitRL27y-kqyNJoYr-kTF8S-c/edit?usp=sharing](Google Slide Deck Presentation)
