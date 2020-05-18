@@ -19,3 +19,6 @@ The contents of popup.html are displayed in the browser when the user clicks on 
 4. Click the Select button.
 5. This extension should appear in the toolbar alongside your other extensions with a green bug icon.
 6. Open a new tab and you should be presented with a random state's covid-19 data and accompanying image.
+
+## Workshop Instructions
+Workshop instructions are available in the docs folder of this repo as both .docx and .pdf file formats.
