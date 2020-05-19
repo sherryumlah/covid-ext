@@ -22,11 +22,11 @@ let log = (msg) => {
   if (debugMode == true){ console.log(msg); }
 }
 
-/******************************************************
+/********************************************************
 // Get today's date, convert to date string
 // Example:  Sat May 16 2020 14:27:22 GMT-0500
-// Becomes: SUN MAY 17 2020
-******************************************************/
+// Returns date portion of Date object: SUN MAY 17 2020
+*********************************************************/
 let getDate = () => {
   let today = (new Date()).toDateString();
   log("Line 32: Today is " + today);
@@ -36,15 +36,15 @@ let getDate = () => {
 /**********************************************************
 Getters/Setters for last retrieved date in localStorage 
 **********************************************************/
-// let getLastRetrievedDate = () => {
-//   log("Line 40: Covid API data last retrieved on: " + localStorage.getItem("dateLastRetrieved"));
-//   return localStorage.getItem("dateLastRetrieved");
-// }
+let getLastRetrievedDate = () => {
+  log("Line 40: Covid API data was last retrieved on: " + localStorage.getItem("dateLastRetrieved"));
+  return localStorage.getItem("dateLastRetrieved");
+}
 
-// let setLastRetrievedDate = (today) => {
-//   log("Line 45: Setting date that data was last retrieved to: " + today);
-//   localStorage.setItem("dateLastRetrieved", today);
-// };
+let setLastRetrievedDate = (today) => {
+  log("Line 45: Setting date that data was last retrieved to: " + today);
+  localStorage.setItem("dateLastRetrieved", today);
+};
 
 /************************************
 Get Covid Data from LocalStorage
@@ -61,7 +61,7 @@ Get Covid Data from API
 //   log("Line 61: Getting data from API...");
 //   const requestOptions = {
 //     method: 'GET',
-//     redirect: 'follow'
+//     redirect: 'follow' // https://www.chromestatus.com/feature/4614142321229824
 //   };
 
 //   fetch("https://api.covid19api.com/live/country/united-states/status/confirmed/date/2020-05-05T00:00:00Z", requestOptions)
@@ -88,9 +88,6 @@ Get Covid Data from API
 //     });
 // };
 
-// Reformat number to include commas for readability
-// let addCommas = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
 /*********************************************************************
 Display Random State's Data and Photo
 Round down (random number between 0.0-.99999 * (covidData.length)
@@ -100,6 +97,9 @@ Example: 0.9999 * (57+1) = 57.9942 / rounded down = 57
 FUTURE TO DO: check image exists for Province - this is frail and
 add DOM elements via JavaScript
 *********************************************************************/
+// Reformat number to include commas for readability
+// let addCommas = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
 // let displayData = (covidData) => {
 //   covidData = JSON.parse(covidData);
 //   log("Line 105: Pulling random state data...");
@@ -121,12 +121,15 @@ add DOM elements via JavaScript
   
 // Check to see if we already retrieved and stored API data for today
 let today = getDate();
-// let lastRetrievedDate = getLastRetrievedDate();
-// let localCovidData = localStorage.getItem("covidData");
+let lastRetrievedDate = getLastRetrievedDate();
+let localCovidData = localStorage.getItem("covidData");
+log("Line 126: Covid data stored locally: " + localCovidData);
 
 // if ((today !== lastRetrievedDate) || !localCovidData || localCovidData == ""){
 //   getCovidData(today); //  retrieve from api and pass in today's date
-// } else {
-//   log("Line 130: Data was already retrieved for today (" + today + ")");
+// } 
+// else 
+// {
+//   log("Line 133: Data was already retrieved for today (" + today + ")");
 //   displayData(getLocalCovidData()); // retrieve from localStorage
 // }
