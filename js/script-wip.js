@@ -74,7 +74,7 @@ Get Covid Data from API
 //       setLastRetrievedDate(today);
 //     })
 //     .then(() => {
-//       displayData(getLocalCovidData());
+//      // displayData(getLocalCovidData());
 //     })
 //     .catch(error => {
 //       // If we fail on any of these functions, clear localStorage
