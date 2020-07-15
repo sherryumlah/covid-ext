@@ -64,7 +64,7 @@ let getCovidData = (today) => {
     redirect: 'follow' // https://www.chromestatus.com/feature/4614142321229824
   };
 
-  fetch("https://api.covid19api.com/live/country/united-states/status/confirmed/date/2020-05-05T00:00:00Z", requestOptions)
+  fetch("https://api.covid19api.com/live/country/united-states/status/confirmed/date/2020-05-01T00:00:00Z", requestOptions)
     .then(response => response.text())
     .then(result => {
       localStorage.setItem("covidData", result);

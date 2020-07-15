@@ -1,7 +1,7 @@
 # Chrome Extension
 
 ## What Does this Extension Do?
-This extension and displays a random U.S. state's covid-19 stats each time a new browser tab is opened. This Covid Chrome Extension utilizes the Covid-19 API from [https://api.covid19api.com](https://api.covid19api.com) to pull data 1 time per day and store that data in the user's localStorage.  Each time a new tab is opened in the Chrome browser, the extension uses the chrome_url_overrides key listed in the manifest.json file to provide a custom replacement for the document and loads the html page noted in the key's value: newtab.html
+This extension displays a random U.S. state's covid-19 stats each time a new browser tab is opened. This Covid Chrome Extension utilizes the Covid-19 API from [https://api.covid19api.com](https://api.covid19api.com) to pull data 1 time per day and store that data in the user's localStorage.  Each time a new tab is opened in the Chrome browser, the extension uses the chrome_url_overrides key listed in the manifest.json file to provide a custom replacement for the document and loads the html page noted in the key's value: newtab.html
 
 ### newtab.html
 Newtab.html executes the js/script.js file, which compares today's date to the last date the user pulled from the API.  This script limits pulling data from the API to one time per day and stores the results in the user's localStorage.  
